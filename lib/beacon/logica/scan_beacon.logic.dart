@@ -72,6 +72,8 @@ class ScanBeaconLogic {
       var dadosBeacon = result.beacons[0];
       var distancia = dadosBeacon.accuracy;
 
+      beaconFound = false;
+
       if (result != null) {
         if (result.beacons.length > 0) {
           //
@@ -86,11 +88,16 @@ class ScanBeaconLogic {
 
   //-------------------- RESET BEACONS LIST ---------------------
 
+  bool loopIsOn = false;
+
   Future resetBeaconsList() async {
     // Timer.periodic(Duration(seconds: 3), (timer) {});
     beaconFound = false;
 
+    loopIsOn = true;
+
     Timer(Duration(seconds: 20), () {
+      loopIsOn = false;
       if (beaconFound == false) {
         changeStatus("Afastado");
       }
@@ -107,7 +114,9 @@ class ScanBeaconLogic {
     //   status = "Afastado";
     // }
 
-    resetBeaconsList();
+    if (loopIsOn == false) {
+      resetBeaconsList();
+    }
 
     beaconStore.setStatusBeacon(status);
   }
