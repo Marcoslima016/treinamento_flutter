@@ -44,10 +44,10 @@ class _BeaconViewState extends State<BeaconView> {
       // ),
 
       ///
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: scanBeacon.changeStatus,
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.add),
+      //   // onPressed: scanBeacon.changeStatus(),
+      // ),
       body: Container(
         width: w * 100,
         child: Column(

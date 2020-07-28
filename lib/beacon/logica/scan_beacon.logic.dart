@@ -6,7 +6,9 @@ import 'package:flutter_beacon/flutter_beacon.dart';
 class ScanBeaconLogic {
   ScanBeaconLogic({
     this.beaconStore,
-  });
+  }) {
+    startBeacon();
+  }
 
   //===================================================== VARIAVEIS ===================================================
 
@@ -57,25 +59,55 @@ class ScanBeaconLogic {
 
   //------------------------- RANGING --------------------------
 
+  bool beaconFound = false;
+
   Future instanceRanging() async {
     _streamRanging =
         flutterBeacon.ranging(regions).listen((RangingResult result) async {
       ///
+      ///
+      var teste = result;
+      var point;
+
+      var dadosBeacon = result.beacons[0];
+      var distancia = dadosBeacon.accuracy;
+
+      if (result != null) {
+        if (result.beacons.length > 0) {
+          //
+          var point;
+          beaconFound = true;
+
+          changeStatus("Proximo");
+        }
+      }
+    });
+  }
+
+  //-------------------- RESET BEACONS LIST ---------------------
+
+  Future resetBeaconsList() async {
+    // Timer.periodic(Duration(seconds: 3), (timer) {});
+    beaconFound = false;
+
+    Timer(Duration(seconds: 20), () {
+      if (beaconFound == false) {
+        changeStatus("Afastado");
+      }
     });
   }
 
   //----------------------- CHANGE STATUS ------------------------
 
-  changeStatus() {
-    // statusAlcance = "Proximo";
+  changeStatus(status) {
+    // var status;
+    // if (beaconStore.statusAlcance == "Afastado") {
+    //   status = "Proximo";
+    // } else {
+    //   status = "Afastado";
+    // }
 
-    var status;
-
-    if (beaconStore.statusAlcance == "Afastado") {
-      status = "Proximo";
-    } else {
-      status = "Afastado";
-    }
+    resetBeaconsList();
 
     beaconStore.setStatusBeacon(status);
   }
