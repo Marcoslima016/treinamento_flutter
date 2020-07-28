@@ -1,3 +1,4 @@
+import 'package:app_treinamento/beacon/beacon.view.dart';
 import 'package:app_treinamento/login/login.view.dart';
 import 'package:flutter/material.dart';
 
@@ -14,9 +15,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginView(
-        title: "Aplicativo Treinamento",
-      ),
+      home: BeaconView(),
+
+      // LoginView(
+      //   title: "Aplicativo Treinamento",
+      // ),
     );
   }
 }

@@ -5,9 +5,13 @@ import 'package:flutter/material.dart';
 class InputText1 extends StatelessWidget {
   InputText1({
     this.hintTextImport,
+    this.changed,
+    this.obscure,
   });
 
+  var obscure;
   var hintTextImport;
+  Function changed;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,8 @@ class InputText1 extends StatelessWidget {
       width: w * 80,
       child: TextFormField(
         // controller: pass,
-        obscureText: true,
+        onChanged: changed,
+        obscureText: obscure,
         decoration: InputDecoration(
           hintText: hintTextImport,
           focusedBorder: OutlineInputBorder(
