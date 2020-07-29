@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:app_treinamento/beacon/logica/models/beacon_item.dart';
 import 'package:app_treinamento/beacon/logica/store/beacon_store.dart';
+import 'package:app_treinamento/core/widgets/metodos/metodos_timestamp.dart';
 import 'package:flutter_beacon/flutter_beacon.dart';
 
 class ScanBeaconLogic {
@@ -21,6 +23,8 @@ class ScanBeaconLogic {
 
   final regions = <Region>[];
 
+  BeaconItem beaconItem = BeaconItem();
+
   //===================================================== METODDS ===================================================
 
   //------------------------- START BEACON --------------------------
@@ -40,6 +44,8 @@ class ScanBeaconLogic {
       var point = e;
     }
 
+    await startBeaconItem();
+
     regions.add(
       Region(
         identifier: "1",
@@ -55,6 +61,19 @@ class ScanBeaconLogic {
     );
 
     instanceRanging();
+    verifyStatusBeacon();
+  }
+
+  //---------------------- MONTAR BEACON ITEM ------------------
+
+  Future startBeaconItem() async {
+    //
+    var timeStampAtual = await getAtualTs();
+
+    beaconItem.id = 0;
+    beaconItem.uuid = "A99D25CD-4C7B-416E-9E1A-7AD54026DCC4";
+    beaconItem.status = 0;
+    beaconItem.timestamp = timeStampAtual;
   }
 
   //------------------------- RANGING --------------------------
@@ -77,48 +96,65 @@ class ScanBeaconLogic {
       if (result != null) {
         if (result.beacons.length > 0) {
           //
-          var point;
+
+          print(
+              "RANGING DETECTADO - BEACON AO ALCANCE: " + distancia.toString());
+
+          if (distancia < 0) {
+            //BEACON AFASTADO
+
+            setStatus(0);
+          } else {
+            //BEACON AO ALCANCE
+
+            setStatus(1);
+          }
+
           beaconFound = true;
 
-          changeStatus("Proximo");
+          //
+        } else {
+          print("RANGING  VAZIO");
         }
       }
     });
   }
 
-  //-------------------- RESET BEACONS LIST ---------------------
+  //-------------------- VERIFY STATUS ---------------------
 
-  bool loopIsOn = false;
-
-  Future resetBeaconsList() async {
-    // Timer.periodic(Duration(seconds: 3), (timer) {});
+  //Verifica o status do beacon e atualiza a tela
+  Future verifyStatusBeacon() async {
     beaconFound = false;
 
-    loopIsOn = true;
+    Timer.periodic(Duration(seconds: 3), (timer) async {
+      //
 
-    Timer(Duration(seconds: 20), () {
-      loopIsOn = false;
-      if (beaconFound == false) {
-        changeStatus("Afastado");
+      var status = beaconItem.status;
+      var timeStamp = beaconItem.timestamp;
+
+      if (status == 1) {
+        beaconStore.setStatusBeacon(status);
+      } else {
+        //
+        var difTs = await compareTs(timeStamp);
+
+        if (difTs > 25) {
+          beaconStore.setStatusBeacon(status);
+        }
       }
     });
   }
 
-  //----------------------- CHANGE STATUS ------------------------
+  //----------------------- SET STATUS ------------------------
 
-  changeStatus(status) {
-    // var status;
-    // if (beaconStore.statusAlcance == "Afastado") {
-    //   status = "Proximo";
-    // } else {
-    //   status = "Afastado";
-    // }
+  //Seta o status do beacon
+  Future setStatus(status) async {
+    var ts = await getAtualTs();
 
-    if (loopIsOn == false) {
-      resetBeaconsList();
-    }
+    beaconItem.status = status;
+    beaconItem.timestamp = ts;
 
-    beaconStore.setStatusBeacon(status);
+    // beaconStore.setStatusBeacon(status);
   }
 
   //-------------------------------------------------------

@@ -13,6 +13,14 @@ abstract class _BeaconStore with Store {
 
   @action
   void setStatusBeacon(valor) {
-    statusAlcance = valor;
+    var textoStatus = "";
+
+    if (valor == 0) {
+      textoStatus = "Afastado";
+    } else {
+      textoStatus = "Ao alcance";
+    }
+
+    statusAlcance = textoStatus;
   }
 }
