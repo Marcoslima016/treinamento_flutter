@@ -1,5 +1,4 @@
-import 'package:app_treinamento/beacon/beacon.view.dart';
-import 'package:app_treinamento/login/login.view.dart';
+import 'package:app_treinamento/pages/status_beacons/status_beacons.view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,9 +12,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        // visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: BeaconView(),
+      home: StatusBeaconView(),
 
       // LoginView(
       //   title: "Aplicativo Treinamento",

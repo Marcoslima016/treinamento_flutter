@@ -1,4 +1,4 @@
-import 'package:app_treinamento/login/widgets/input_text1.widget.dart';
+import 'package:app_treinamento/pages/login/widgets/input_text1.widget.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
