@@ -1,3 +1,4 @@
+import 'package:app_treinamento/pages/start/start.view.dart';
 import 'package:app_treinamento/pages/status_beacons/status_beacons.view.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         // visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: StatusBeaconView(),
+      home: StartView(),
 
       // LoginView(
       //   title: "Aplicativo Treinamento",

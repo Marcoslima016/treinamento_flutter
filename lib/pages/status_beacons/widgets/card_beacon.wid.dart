@@ -25,14 +25,18 @@ class CardBeacon extends StatelessWidget {
           ),
           Container(
             margin: EdgeInsets.only(
-              right: w * 10,
+              right: w * 14,
             ),
             child: Card(
               shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.white70, width: 1),
+                side: BorderSide(
+                  color: Colors.white70,
+                  width: 1,
+                ),
                 borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(60),
-                    topRight: Radius.circular(60)),
+                  bottomRight: Radius.circular(60),
+                  topRight: Radius.circular(60),
+                ),
               ),
               child: Padding(
                 padding: EdgeInsets.only(
