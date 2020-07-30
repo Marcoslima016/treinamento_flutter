@@ -39,19 +39,22 @@ class _StatusBeaconViewState extends State<StatusBeaconView> {
     double h = MediaQuery.of(context).size.height / 100;
 
     return Scaffold(
-      ///
-      // appBar: AppBar(
-      //   title: Text(title),
-      // ),
-
-      ///
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.add),
-      //   // onPressed: scanBeacon.changeStatus(),
-      // ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: Icon(
+              Icons.search,
+              size: 30,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
       body: Container(
         width: w * 100,
-        child: TextBeacon(
+        child: CardBeacon(
           beaconStore: beaconStore,
         ),
       ),
