@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:app_treinamento/core/metodos/metodos_timestamp.dart';
-import 'package:app_treinamento/pages/status_beacons/logica/models/beacon_item.dart';
-import 'package:app_treinamento/pages/status_beacons/logica/store/beacon_store.dart';
+import 'package:app_treinamento/pages/start/tabs/status_beacons/logica/models/beacon_item.dart';
+import 'package:app_treinamento/pages/start/tabs/status_beacons/logica/store/beacon_store.dart';
+
 import 'package:flutter_beacon/flutter_beacon.dart';
 
 class ScanBeaconLogic {

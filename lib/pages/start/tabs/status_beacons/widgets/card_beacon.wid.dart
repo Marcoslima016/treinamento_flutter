@@ -1,5 +1,5 @@
-import 'package:app_treinamento/pages/status_beacons/logica/store/beacon_store.dart';
-import 'package:app_treinamento/pages/status_beacons/widgets/text_status.widget.dart';
+import 'package:app_treinamento/pages/start/tabs/status_beacons/logica/store/beacon_store.dart';
+import 'package:app_treinamento/pages/start/tabs/status_beacons/widgets/text_status.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
