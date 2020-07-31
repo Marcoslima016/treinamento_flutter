@@ -9,24 +9,77 @@ class NotifyView extends StatelessWidget {
   ///
   @override
   Widget build(BuildContext context) {
+    double w = MediaQuery.of(context).size.width / 100;
+    double h = MediaQuery.of(context).size.height / 100;
     return Container(
+      height: h * 100,
       child: ListView.builder(
-        padding: EdgeInsets.all(12.0),
+        padding: EdgeInsets.only(top: h * 10, right: w * 3, left: w * 3),
         itemCount: notifyLogic.listaNot.length,
         //reverse: true,
         itemBuilder: (BuildContext context, int index) {
           NotifyItem item = notifyLogic.listaNot[index];
-
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 20,
+          return Card(
+            color: Colors.white,
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: h,
+                bottom: h,
+                left: w * 3,
               ),
-              Text(item.titulo),
-              Text(item.texto),
-            ],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Icon(
+                    Icons.warning,
+                    size: h * 10,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        item.titulo,
+                        style: TextStyle(
+                          fontSize: 24,
+                        ),
+                      ),
+                      Text(
+                        item.texto,
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                      Text(
+                        item.dthr,
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      FlatButton(
+                        child: Text(
+                          "Abrir",
+                          style: TextStyle(
+                            color: Colors.blue,
+                          ),
+                        ),
+                        onPressed: () {},
+                      ),
+                      FlatButton(
+                        child: Text("Fechar",
+                            style: TextStyle(
+                              color: Colors.red,
+                            )),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           );
         },
       ),

@@ -5,24 +5,27 @@ class NotifyLogic {
     ///
     listaNot.add(
       NotifyItem(
-        titulo: " Alerta",
-        texto: " Beacon se aproximou!!",
+        titulo: "Alerta",
+        texto: "Beacon se aproximou!",
+        dthr: "18:30 - 30/07"
       ),
     );
 
     ///
     listaNot.add(
       NotifyItem(
-        titulo: " Alerta",
-        texto: " Beacon se aproximou 222222222!!",
+        titulo: "Alerta",
+        texto: "Beacon se aproximou!",
+        dthr: "06:30 - 30/07"
       ),
     );
 
     ///
     listaNot.add(
       NotifyItem(
-        titulo: " Alerta",
-        texto: " Beacon se aproximou 333333333333!!",
+        titulo: "Alerta",
+        texto: "Beacon se aproximou!",
+        dthr: "04:30 - 30/07"
       ),
     );
 
